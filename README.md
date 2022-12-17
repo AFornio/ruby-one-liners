@@ -302,6 +302,129 @@ pets = [ 'dog', 'dog', 'cat', 'bird', 'chinchilla', 'rat', 'hamster', 'dog', 'ra
 get_most_appeared(pets) # 'dog'
 ```
 
+## MATHS
+
+### Calculate the midpoint between two points
+
+```
+def midpoint(point1, point2)
+  [(point1[0] + point2[0]) / 2, (point1[1] + point2[1]) / 2]
+end
+
+midpoint([0, 0], [1, 1]) # [0.5, 0.5]
+midpoint([0, 0], [2, 4]) # [1, 2]
+```
+
+### Calculate the linear interpolation between two numbers
+
+```
+def linear_interpolation(y1, y2, mu)
+  y1 * (1 - mu) + y2 * mu
+end
+
+linear_interpolation(0, 1, 0.5) # 0.5
+linear_interpolation(0, 1, 0.25) # 0.25
+```
+
+### Check if a point is inside a rectangle
+
+```
+def is_point_in_rectangle(point, rectangle)
+  point[0] >= rectangle[0] && point[0] <= rectangle[2] && point[1] >= rectangle[1] && point[1] <= rectangle[3]
+end
+
+is_point_in_rectangle([1, 1], [0, 0, 2, 3]) # true
+is_point_in_rectangle([1, 1], [0, 0, 0.5, 0.5]) # false
+```
+
+### Calculate the angle of a line defined by two points
+
+```
+def angle(point1, point2)
+  Math.atan2(point2[1] - point1[1], point2[0] - point1[0]) * 180 / Math::PI
+end
+
+angle([0, 0], [1, 1]) # 45
+angle([0, 0], [1, 0]) # 0
+```
+
+### Check if a rectangle contains other one
+
+```
+def is_rectangle_contained(rectangle1, rectangle2)
+  rectangle1[0] <= rectangle2[0] && rectangle1[1] <= rectangle2[1] && rectangle1[2] >= rectangle2[2] && rectangle1[3] >= rectangle2[3]
+end
+
+is_rectangle_contained([0, 0, 2, 2], [1, 1, 1.5, 1.5]) # true
+is_rectangle_contained([0, 0, 2, 2], [1, 1, 3, 3]) # false
+```
+
+### Calculate the distance between two points
+
+```
+def distance(point1, point2)
+  Math.hypot(point2[0] - point1[0], point2[1] - point1[1])
+end
+
+distance([0, 0], [1, 1]) # 1.4142135623730951
+distance([0, 0], [5, 0]) # 5
+```
+
+### Convert degrees to radians
+
+```
+def degrees_to_radians(degrees)
+  degrees * Math::PI / 180
+end
+
+degrees_to_radians(180) # 3.141592653589793
+degrees_to_radians(90) # 1.5707963267948966
+```
+
+### Check if a rectangle overlaps other one
+
+```
+def is_rectangle_overlapping(rectangle1, rectangle2)
+  rectangle1[0] < rectangle2[2] && rectangle1[2] > rectangle2[0] && rectangle1[1] < rectangle2[3] && rectangle1[3] > rectangle2[1]
+end
+
+is_rectangle_overlapping([0, 0, 2, 2], [1, 1, 3, 3]) # true
+is_rectangle_overlapping([0, 0, 1, 1], [2, 2, 3, 3]) # false
+```
+
+### Normalize the ratio of a number in a range
+
+```
+def normalize_ratio(num, min, max)
+  (num - min) / (max - min)
+end
+
+normalize_ratio(0.5, 0, 1) # 0.5
+normalize_ratio(5, 0, 10) # 0.5
+```
+
+### Convert radians to degrees
+
+```
+def radians_to_degrees(radians)
+  radians * 180 / Math::PI
+end
+
+radians_to_degrees(3.141592653589793) # 180
+radians_to_degrees(1.5707963267948966) # 90
+```
+
+### Round a number to the nearest multiple of a given value
+
+```
+def round_to_multiple(num, multiple)
+  (num / multiple).round * multiple
+end
+
+round_to_multiple(13, 5) # 15
+round_to_multiple(12, 5) # 10
+```
+
 ## FUNCTIONS
 
 #### Inline if-else
