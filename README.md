@@ -510,34 +510,174 @@ b # 5
 
 ## RANDOM
 
-#### Generate random boolean
+#### Generate a random boolean
 
 ```
-[true, false].sample
+def random_boolean
+  [true, false].sample
+end
+
+random_boolean #=> true
+random_boolean #=> false
 ```
 
-#### Generate random integer in given range
+#### Generate a random integer in given range
 
 ```
-def generate_random(min, max)
+def random_integer(min, max)
   rand(min..max)
 end
 
-generate_random(1,10) # 3
-generate_random(-5,10) # -3
-generate_random(100,1) # nil
-```
-
-#### Generate random hex color
+random_integer(1, 10) #=> 5
+random_integer(1, 10) #=> 8
 
 ```
-def generate_hex
-"%06x" % (rand * 0xffffff)
+
+#### Generate a random floating point number in given range
+
+```
+def random_float(min, max)
+  rand(min..max)
 end
 
+random_float(1, 10) #=> 5.123
+random_float(1, 10) #=> 8.123
+```
 
-generate_hex # 285b36
-generate_hex # cf4eed
+#### Generate a random hex color
+
+```
+def random_hex_color
+  "#%06x" % (rand * 0xffffff)
+end
+
+random_hex_color #=> "#e6e6e6"
+random_hex_color #=> "#e6e6e6"
+```
+
+#### Generate a random string from given characters
+
+```
+def random_string(length, characters)
+  characters = characters.split('') unless characters.is_a? Array
+  Array.new(length) { characters.sample }.join
+end
+
+random_string(10, 'abc') #=> "bcbabababa"
+random_string(10, 'abc') #=> "ababababab"
+```
+
+#### Generate a random IP address
+
+```
+def random_ip_address
+  Array.new(4) { rand(256) }.join('.')
+end
+
+random_ip_address # "169.18.119.188"
+random_ip_address # "126.122.102.185"
+random_ip_address # "233.85.50.36"
+```
+
+#### Generate an array of random integers in a given range
+
+```
+def random_integers(length, min, max)
+  Array.new(length) { rand(min..max) }
+end
+
+random_integers(10, 1, 10) #=> [5, 8, 1, 2, 5, 1, 2, 5, 1, 2]
+random_integers(10, 1, 10) #=> [5, 8, 1, 2, 5, 1, 2, 5, 1, 2]
+```
+
+#### Generate a random sign
+
+```
+def random_sign
+  [-1, 1].sample
+end
+
+random_sign #=> -1
+random_sign #=> 1
+```
+
+#### Get a random item and remove it from an array
+
+```
+def random_item!(array)
+  array.delete_at(rand(array.length))
+end
+
+array = [1, 2, 3, 4, 5]
+random_item!(array) #=> 3
+array #=> [1, 2, 4, 5]
+```
+
+#### Generate a random string with given length
+
+```
+def random_string(length)
+  Array.new(length) { ('a'..'z').to_a.sample }.join
+end
+
+random_string(10) #=> "tfdhfuklbz"
+random_string(10) #=> "cyiezmppoq"
+```
+
+#### Get random items of an array
+
+```
+def random_items(array, count)
+  array.sample(count)
+end
+
+array = [1, 2, 3, 4, 5]
+random_items(array, 2) #=> [2, 5]
+random_items(array, 2) #=> [1, 4]
+random_items(array, 2) #=> [3, 5]
+```
+
+#### Get a random item from an array
+
+```
+def random_item(array)
+  array.sample
+end
+
+array = [1, 2, 3, 4, 5]
+random_item(array) #=> 2
+random_item(array) #=> 5
+```
+
+#### Pick a random property of an object
+
+```
+def random_property(object)
+  object.send
+  (object.methods.sample)
+end
+
+random_property('abc') #=> "a"
+random_property('abc') #=> "b"
+```
+
+#### Pick random lines from a text document
+
+```
+def random_lines(file, count)
+  File.readlines(file).sample(count)
+end
+
+randomLines(
+  `one
+  two
+  three
+  four
+  five`,
+    2
+);
+
+# ['one', 'four']
 ```
 
 # Contributing♦️
