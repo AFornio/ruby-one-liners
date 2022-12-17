@@ -435,54 +435,520 @@ round_to_multiple(12, 5) # 10
 
 ## STRINGS
 
-#### Reverse string
+#### Capitalize a string
 
 ```
-"string".reverse #gnirts
-```
-
-#### Palindrome?
-
-```
-def is_palindrome?(str)
-  str == str.reverse
+def capitalize(string)
+  string.capitalize
 end
 
-is_palindrome?('hello') # false
-is_palindrome?('worldlrow') # true
-is_palindrome?('12321') # true
+capitalize('fooBar') # 'FooBar'
 ```
 
-#### Repeat 'n' times
+#### Check if a path is relative
 
 ```
-def repeat(text, n=1)
-  text * n
+def is_relative_path(path)
+  !path.start_with?('/')
 end
 
-def repeat_with_spaces(text, n=1)
-  ("#{input} " * n).strip
+is_relative_path('foo/bar') # true
+is_relative_path('/foo/bar') # false
+
+```
+
+#### Check if a string is a palindrome
+
+```
+def is_palindrome(string)
+  string == string.reverse
 end
-​
-repeat('hello', 3) # hellohellohello
-repeat_with_spaces('hello', 3) # hello hello hello
-```
 
-#### Capitalize ONLY first letter
+is_palindrome('tacocat') # true
+is_palindrome('awesome') # false
 
 ```
-"hello world".capitalize
-# "Hello world"
-```
 
-#### Capitalize first letter of each word
+#### Check if a URL is absolute
 
 ```
-"hello world".titleize # RAILS
-"hello_world".titleize # RAILS
-# "Hello World"
+def is_absolute_url(url)
+  url.start_with?('http://', 'https://')
+end
 
-"hello world".split(/ |\_|\-/).map(&:capitalize).join(" ") # RUBY
+is_absolute_url('https://google.com') # true
+is_absolute_url('google.com') # false
+```
+
+#### Check if two strings are anagram
+
+```
+def is_anagram(string1, string2)
+  string1.downcase.chars.sort == string2.downcase.chars.sort
+end
+
+is_anagram('iceman', 'cinema') # true
+is_anagram('foo', 'bar') # false
+
+```
+
+#### Convert a base64 encoded string to an uint8 array
+
+```
+def base64_to_uint8_array(base64)
+  Base64.decode64(base64).bytes
+end
+
+base64_to_uint8_array('Zm9vYmFy') # [102, 111, 111, 98, 97, 114]
+```
+
+#### Check if a string consists of a repeated character sequence
+
+```
+def is_repeated_character_sequence(string)
+  string.chars.chunk(&:itself).map(&:last).all? { |x| x.length == 1 }
+end
+
+is_repeated_character_sequence('aaaa') # true
+is_repeated_character_sequence('aaab') # false
+
+```
+
+#### Convert a string to camelCase
+
+```
+def to_camel_case(string)
+  string.split('_').map(&:capitalize).join
+end
+
+to_camel_case('foo_bar') # 'FooBar'
+
+```
+
+#### Convert a letter to associate emoji
+
+```
+def letter_to_emoji(letter)
+  letter = letter.downcase
+  (letter.ord + 127365).chr(Encoding::UTF_8)
+end
+
+letter_to_emoji('a') # '🇦'
+letter_to_emoji('b') # '🇧'
+
+```
+
+#### Convert a string to PascalCase
+
+```
+def to_pascal_case(string)
+  string.split('_').map(&:capitalize).join
+end
+
+to_pascal_case('foo_bar') # 'FooBar'
+
+```
+
+#### Convert a string to URL slug
+
+```
+def to_slug(string)
+  string.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+end
+
+to_slug('Hello World!') # 'hello-world'
+
+```
+
+#### Convert a Windows file path to Unix path
+
+```
+def windows_to_unix_path(path)
+  path.gsub('\\', '/')
+end
+
+windows_to_unix_path('foo\\bar') # 'foo/bar'
+
+```
+
+#### Convert an uint8 array to a base64 encoded string
+
+```
+def uint8_array_to_base64(array)
+  Base64.strict_encode64(array.pack('C*'))
+end
+
+uint8_array_to_base64([102, 111, 111, 98, 97, 114]) # 'Zm9vYmFy'
+
+```
+
+#### Convert camelCase to kebab-case and vice versa
+
+```
+def to_kebab_case(string)
+  string.gsub(/([a-z])([A-Z])/, '\1-\2').downcase
+end
+
+to_kebab_case('fooBar') # 'foo-bar'
+to_kebab_case('foo-bar') # 'fooBar'
+
+```
+
+#### Convert snake_case to camelCase
+
+```
+def snake_to_camel_case(string)
+  string.split('_').map { |x| x.capitalize }.join
+end
+
+snake_to_camel_case('foo_bar') # 'FooBar'
+
+```
+
+#### Convert the name of an Excel column to number
+
+```
+def excel_column_to_number(column)
+  column.upcase.each_char.map { |x| x.ord - 64 }.join.to_i
+end
+
+excel_column_to_number('A') # 1
+excel_column_to_number('AA') # 27
+
+```
+
+#### Count the number of words in a string
+
+```
+def count_words(string)
+  string.split(' ').length
+end
+
+count_words('I love Ruby!') # 3
+
+```
+
+#### Count the occurrences of a character in a string
+
+```
+def count_character(string, character)
+  string.count(character)
+end
+
+count_character('I love Ruby!', 'o') # 1
+
+```
+
+#### Decapitalize a string
+
+```
+def decapitalize(string)
+  string[0].downcase + string[1..-1]
+end
+
+decapitalize('FooBar') # 'fooBar'
+
+```
+
+#### Get the base URL without any parameters
+
+```
+def get_base_url(url)
+  url.split('?')[0]
+end
+
+get_base_url('https://google.com?q=foo') # 'https://google.com'
+
+```
+
+#### Format a string
+
+```
+def format_string(string, *args)
+  string % args
+end
+
+format_string('I love %s!', 'Ruby') # 'I love Ruby!'
+format_string('I love %s and %s!', 'Ruby', 'Python') # 'I love Ruby and Python!'
+
+```
+
+#### Get the file extension from a file name
+
+```
+def get_file_extension(file)
+  file.split('.').last
+end
+
+get_file_extension('foo.rb') # 'rb'
+
+```
+
+#### Get the file name from a URL
+
+```
+def get_file_name(url)
+  url.split('/').last
+end
+
+get_file_name('https://google.com/foo/bar.jpg') # 'bar.jpg'
+
+```
+
+#### Get the length of a string in bytes
+
+```
+def get_string_length(string)
+  string.bytesize
+end
+
+get_string_length('I love Ruby!') # 12
+
+```
+
+#### Get the number of a character in a string
+
+```
+def get_character_number(string, character)
+  string.chars.count(character)
+end
+
+get_character_number('I love Ruby!', 'o') # 1
+
+```
+
+#### Make the first character of a string lowercase
+
+```
+def lowercase_first_character(string)
+  string[0].downcase + string[1..-1]
+end
+
+lowercase_first_character('FooBar') # 'fooBar'
+
+```
+
+#### Normalize file path slashes
+
+```
+def normalize_slashes(path)
+  path.gsub('\\', '/')
+end
+
+normalize_slashes('foo\\bar') # 'foo/bar'
+
+```
+
+#### Prepend a line number to each line of a text document
+
+```
+def prepend_line_number(file)
+  File.readlines(file).map.with_index { |x, i| "#{i + 1} #{x}" }.join
+end
+
+```
+
+#### Remove duplicate lines of a text document
+
+```
+def remove_duplicate_lines(file)
+  File.readlines(file).uniq.join
+end
+
+```
+
+#### Remove spaces from a string
+
+```
+def remove_spaces(string)
+  string.gsub(' ', '')
+end
+
+remove_spaces('I love Ruby!') # 'IloveRuby!'
+```
+
+#### Remove empty lines of a text document
+
+```
+def remove_empty_lines(file)
+  File.readlines(file).reject { |x| x.strip.empty? }.join
+end
+```
+
+#### Repeat a string
+
+```
+def repeat_string(string, count)
+  string * count
+end
+
+repeat_string('I love Ruby!', 3) # 'I love Ruby!I love Ruby!I love Ruby!'
+repeat_string('I love Ruby!', 0) # ''
+
+```
+
+#### Replace all line breaks with br elements
+
+```
+def replace_line_breaks(string)
+  string.gsub('
+
+', '<br>')
+end
+
+replace_line_breaks('I love
+
+Ruby!') # 'I love<br>Ruby!'
+
+```
+
+#### Replace multiple spaces with a single space
+
+```
+def replace_multiple_spaces(string)
+  string.gsub(/\s+/, ' ')
+end
+
+replace_multiple_spaces('I    love   Ruby!') # 'I love Ruby
+
+```
+
+#### Replace the first given number of characters of a string with another character
+
+```
+def replace_characters(string, character, count)
+  string.gsub(character, '*', count)
+end
+
+replace_characters('I love Ruby!', 'o', 1) # 'I l*ve Ruby!'
+replace_characters('I love Ruby!', 'o', 2) # 'I l*v* Ruby!'
+
+```
+
+#### Replace all tab characters with spaces
+
+```
+def replace_tabs(string, count)
+  string.gsub("\t", ' ' * count)
+end
+
+replace_tabs("I\tlove\tRuby!", 2) # 'I  love  Ruby!'
+
+```
+
+#### Reverse the order of lines of a text
+
+```
+def reverse_lines(file)
+  File.readlines(file).reverse.join
+end
+
+```
+
+#### Reverse a string
+
+```
+def reverse_string(string)
+  string.reverse
+end
+
+reverse_string('I love Ruby!') # !ybuR evol I
+
+```
+
+#### Sort lines of a text document in the alphabetical order
+
+```
+def sort_lines(file)
+  File.readlines(file).sort.join
+end
+```
+
+#### Sort the characters of a string in the alphabetical order
+
+```
+def sort_characters(string)
+  string.chars.sort.join
+end
+
+sort_characters('I love Ruby!') # ' !IbRUVYdeloru'
+
+```
+
+#### Swap case of characters in a string
+
+```
+def swap_case(string)
+  string.swapcase
+end
+
+swap_case('I love Ruby!') # 'i LOVE rUBY!'
+
+```
+
+#### Trim slashes at the beginning and the end of a string
+
+```
+def trim_slashes(string)
+  string.gsub(/^\/|\/$/, '')
+end
+
+trim_slashes('/foo/bar/') # 'foo/bar'
+```
+
+#### Trim some character
+
+```
+def trim_character(string, character)
+  string.gsub(character, '')
+end
+
+trim_character('I love Ruby!', '!') # 'I love Ruby'
+
+```
+
+#### Strip ANSI codes from a string
+
+```
+def strip_ansi(string)
+  string.gsub(/\e\[[\d;]+m/, '')
+end
+
+strip_ansi("\e[31mI love Ruby!\e[0m") # 'I love Ruby!'
+
+```
+
+#### Truncate a string at full words
+
+```
+def truncate_string(string, length)
+  string.length > length ? string[0..length].split(' ')[0..-2].join(' ') + '...' : string
+end
+
+truncate_string('I love Ruby!', 5) # 'I...'
+truncate_string('I love Ruby!', 10) # 'I love...'
+
+```
+
+#### Trim the file extension from a file name
+
+```
+def trim_file_extension(file)
+  file.split('.').first
+end
+
+trim_file_extension('foo.rb') # 'foo'
+
+```
+
+#### Uppercase the first character of each word in a string
+
+```
+def uppercase_first_character(string)
+  string.split(' ').map { |x| x.capitalize }.join(' ')
+end
+
+uppercase_first_character('I love Ruby!') # 'I Love Ruby!'
 ```
 
 ## VARIABLES
