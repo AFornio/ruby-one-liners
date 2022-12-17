@@ -19,7 +19,7 @@ arr = ["one", "two", "three", "four", "five"]
 make_me_a_hash(arr) # {0=>"one", 1=>"two", 2=>"three", 3=>"four", 4=>"five"}
 ```
 
-### Compare two arrays regardless of order
+#### Compare two arrays regardless of order
 
 ```
 def is_equal(arr1, arr2)
@@ -30,7 +30,7 @@ is_equal([1,2,3], [2,3,1]) # true
 is_equal([1,2,3], [2,3,1,4]) # false
 ```
 
-### Cloning an array
+#### Cloning an array
 
 ```
 dup_array = [1,2,3].dup
@@ -38,7 +38,7 @@ dup_array = [1,2,3].dup
 # dup_array = [1,2,3]
 ```
 
-### Create an array of numbers in the given range
+#### Create an array of numbers in the given range
 
 ```
 a=\*(1..10)
@@ -52,7 +52,7 @@ Array (1..10)
 # ["a", "b", "c", "d", "e", "f"]
 ```
 
-### Create cartesian product
+#### Create cartesian product
 
 ```
 [:a, :b].product [:c,:d]
@@ -60,13 +60,13 @@ Array (1..10)
 # [[:a, :c], [:a, :d], [:b, :c], [:b, :d]]
 ```
 
-### Empty an array
+#### Empty an array
 
 ```
 a.clear
 ```
 
-### Find the closest number from an array
+#### Find the closest number from an array
 
 ```
 def find_closest(n, arr)
@@ -77,7 +77,7 @@ arr = [20, 30, 45, 50, 56, 60, 64, 80]
 find_closest(40, arr) # 45
 ```
 
-### Find the index of the maximum item of an array
+#### Find the index of the maximum item of an array
 
 ```
 arr.index(arr.max)
@@ -86,7 +86,7 @@ arr = [20, 30, 45, 50, 56, 60, 64, 80]
 arr.index(arr.max) # 7
 ```
 
-### Find the index of the minimum item of an array
+#### Find the index of the minimum item of an array
 
 ```
 arr.index(arr.min)
@@ -95,7 +95,7 @@ arr = [20, 30, 45, 50, 56, 60, 64, 80]
 arr.index(arr.max) # 0
 ```
 
-### Find the length of the longest string in an array
+#### Find the length of the longest string in an array
 
 ```
 def find_longest_length(arr)
@@ -106,7 +106,7 @@ arr = ['one','two','three','four','five']
 find_longest_length(arr) # "three"
 ```
 
-### Create an array of cumulative sum
+#### Create an array of cumulative sum
 
 ```
 def cumulative_sum(arr)
@@ -118,7 +118,7 @@ arr = [1, 2, 3, 4]
 cumulative_sum(arr) # [1, 3, 6, 10]
 ```
 
-### Flatten an array
+#### Flatten an array
 
 ```
 c = [[["a"]], [["b"]]]
@@ -127,7 +127,7 @@ c.flatten # ["a", "b"]
 c.flatten(1) # [["a"], ["b"]]
 ```
 
-### Get all arrays of consecutive elements
+#### Get all arrays of consecutive elements
 
 ```
 def get_consecutives_arrays(arr, n)
@@ -139,7 +139,7 @@ get_consecutives_arrays(arr, 2) # [[1, 2], [2, 3], [3, 4]]
 get_consecutives_arrays(arr, 3) # [[1, 2, 3], [2, 3, 4]]
 ```
 
-### Get the average of an array
+#### Get the average of an array
 
 ```
 def array_average(arr)
@@ -150,7 +150,7 @@ arr = [1, 2, 3, 4, 5, 6, 7, 8]
 array_average(arr) # 4.5
 ```
 
-### Intersection, union & difference
+#### Intersection, union & difference
 
 ```
 x = [1, 1, 2, 4]
@@ -166,7 +166,7 @@ x | y # [1, 2, 4]
 x - y # [4]
 ```
 
-### Get the rank of an array of numbers
+#### Get the rank of an array of numbers
 
 ```
 def numbers_rank(arr)
@@ -178,7 +178,7 @@ arr = [89, 52, 52, 36, 18, 18, 5]
 numbers_rank(arr) # [1, 2, 2, 4, 5, 5, 7]
 ```
 
-### Remove duplicate values in an array
+#### Remove duplicate values in an array
 
 ```
 arr.uniq
@@ -188,7 +188,7 @@ arr.uniq # [1, 2, 3, 4, 5]
 arr # [1,1,1,2,3,4,5]
 ```
 
-### Intersperse element between elements
+#### Intersperse element between elements
 
 ```
 def intersperse_element(arr, element)
@@ -199,7 +199,7 @@ arr = [1, 2, 3]
 intersperse_element(arr, :a) #  [1, :a, 2, :a, 3]
 ```
 
-### Partition an array based on a condition
+#### Partition an array based on a condition
 
 ```
 arr.partition { condition }
@@ -207,7 +207,7 @@ arr.partition { condition }
 (1..6).partition { |v| v.even? } # [[2, 4, 6], [1, 3, 5]]
 ```
 
-### Remove nil / false values from array
+#### Remove nil / false values from array
 
 ```
 arr - [ nil ] # removes nil values
@@ -225,7 +225,7 @@ arr - [ false ] # [0, "a string", "", true, 5, "another string", nil]
 arr - [ nil, false ] # [0, "a string", "", true, 5, "another string"]
 ```
 
-### Sort an array of items by given key
+#### Sort an array of items by given key
 
 ```
 def sort_array_by(arr, key)
@@ -243,7 +243,7 @@ sort_array_by(arr, 'age')
 # [{:name=>"Baz", :age=>32}, {:name=>"Fuzz", :age=>36}, {:name=>"Bar", :age=>24}, {:name=>"Foo", :age=>42}]
 ```
 
-### Shuffle an array
+#### Shuffle an array
 
 ```
 arr.shuffle
@@ -255,7 +255,7 @@ arr1.shuffle # ["a", "b", "c", "d", "e"]
 arr2.shuffle # ["e", "a", "b", "c", "d"]
 ```
 
-### Swap the rows and columns of a matrix
+#### Swap the rows and columns of a matrix
 
 ```
 matrix.transpose
@@ -269,7 +269,7 @@ matrix = [
 matrix.transpose # [[1, 1, 1], [2, 2, 2], [3, 3, 3]]
 ```
 
-### Swap two array items
+#### Swap two array items
 
 ```
 def swap_items(arr, key1, key2)
@@ -304,7 +304,7 @@ get_most_appeared(pets) # 'dog'
 
 ## MATHS
 
-### Calculate the midpoint between two points
+#### Calculate the midpoint between two points
 
 ```
 def midpoint(point1, point2)
@@ -315,7 +315,7 @@ midpoint([0, 0], [1, 1]) # [0.5, 0.5]
 midpoint([0, 0], [2, 4]) # [1, 2]
 ```
 
-### Calculate the linear interpolation between two numbers
+#### Calculate the linear interpolation between two numbers
 
 ```
 def linear_interpolation(y1, y2, mu)
@@ -326,7 +326,7 @@ linear_interpolation(0, 1, 0.5) # 0.5
 linear_interpolation(0, 1, 0.25) # 0.25
 ```
 
-### Check if a point is inside a rectangle
+#### Check if a point is inside a rectangle
 
 ```
 def is_point_in_rectangle(point, rectangle)
@@ -337,7 +337,7 @@ is_point_in_rectangle([1, 1], [0, 0, 2, 3]) # true
 is_point_in_rectangle([1, 1], [0, 0, 0.5, 0.5]) # false
 ```
 
-### Calculate the angle of a line defined by two points
+#### Calculate the angle of a line defined by two points
 
 ```
 def angle(point1, point2)
@@ -348,7 +348,7 @@ angle([0, 0], [1, 1]) # 45
 angle([0, 0], [1, 0]) # 0
 ```
 
-### Check if a rectangle contains other one
+#### Check if a rectangle contains other one
 
 ```
 def is_rectangle_contained(rectangle1, rectangle2)
@@ -359,7 +359,7 @@ is_rectangle_contained([0, 0, 2, 2], [1, 1, 1.5, 1.5]) # true
 is_rectangle_contained([0, 0, 2, 2], [1, 1, 3, 3]) # false
 ```
 
-### Calculate the distance between two points
+#### Calculate the distance between two points
 
 ```
 def distance(point1, point2)
@@ -370,7 +370,7 @@ distance([0, 0], [1, 1]) # 1.4142135623730951
 distance([0, 0], [5, 0]) # 5
 ```
 
-### Convert degrees to radians
+#### Convert degrees to radians
 
 ```
 def degrees_to_radians(degrees)
@@ -381,7 +381,7 @@ degrees_to_radians(180) # 3.141592653589793
 degrees_to_radians(90) # 1.5707963267948966
 ```
 
-### Check if a rectangle overlaps other one
+#### Check if a rectangle overlaps other one
 
 ```
 def is_rectangle_overlapping(rectangle1, rectangle2)
@@ -392,7 +392,7 @@ is_rectangle_overlapping([0, 0, 2, 2], [1, 1, 3, 3]) # true
 is_rectangle_overlapping([0, 0, 1, 1], [2, 2, 3, 3]) # false
 ```
 
-### Normalize the ratio of a number in a range
+#### Normalize the ratio of a number in a range
 
 ```
 def normalize_ratio(num, min, max)
@@ -403,7 +403,7 @@ normalize_ratio(0.5, 0, 1) # 0.5
 normalize_ratio(5, 0, 10) # 0.5
 ```
 
-### Convert radians to degrees
+#### Convert radians to degrees
 
 ```
 def radians_to_degrees(radians)
@@ -414,7 +414,7 @@ radians_to_degrees(3.141592653589793) # 180
 radians_to_degrees(1.5707963267948966) # 90
 ```
 
-### Round a number to the nearest multiple of a given value
+#### Round a number to the nearest multiple of a given value
 
 ```
 def round_to_multiple(num, multiple)
