@@ -425,6 +425,218 @@ round_to_multiple(13, 5) # 15
 round_to_multiple(12, 5) # 10
 ```
 
+## NUMBERS
+
+#### Calculate Fibonacci numbers
+
+```
+fibo = Hash.new{ |h,k| h[k] = k < 2 ? k : h[k-1] + h[k-2] }
+
+fibo[1] # 1
+fibo[2] # 1
+fibo[3] # 2
+fibo[4] # 3
+fibo[5] # 5
+fibo[6] # 8
+```
+
+#### Add an ordinal suffix to a number
+
+```
+def add_ordinal(num)
+  num.to_s + %w{th st nd rd th th th th th th}[num % 10]
+end
+
+add_ordinal(2) # '2nd'
+add_ordinal(11) # '11tst'
+
+```
+
+#### Calculate the average of arguments
+
+```
+def average(*args)
+  args.reduce(:+) / args.length.to_f
+end
+
+average(1, 2, 3, 4) # 2.5
+```
+
+#### Calculate the division of arguments
+
+```
+def division(*args)
+  args.reduce(:/).to_f
+end
+
+division(1, 2, 3, 4) # 0.0
+```
+
+#### Calculate the mod of collection index
+
+```
+def mod(a, b)
+  ((a % b) + b) % b
+end
+
+mod(-1, 5) # 4
+mod(3, 5) # 3
+mod(6, 5) # 1
+```
+
+#### Calculate the remainder of division of arguments
+
+```
+def remainder(*args)
+  args.reduce(:%)
+end
+
+remainder(1, 2, 3, 4) # 1
+```
+
+#### Clamp a number between two values
+
+```
+def clamp(val, min = 0, max = 1)
+  [min, [val, max].min].max
+end
+
+clamp(199, 10, 25) # 25
+```
+
+#### Compute the greatest common divisor between two numbers
+
+```
+def gcd(a, b)
+  b == 0 ? a : gcd(b, a % b)
+end
+
+gcd(10, 15) # 5
+```
+
+#### Calculate the factorial of a number
+
+```
+def factorial(n)
+  n <= 1 ? 1 : n * factorial(n - 1)
+end
+
+factorial(2) # 2
+factorial(3) # 6
+factorial(4) # 24
+factorial(5) # 120
+factorial(6) # 720
+```
+
+#### Calculate the sum of arguments
+
+```
+def sum(*args)
+  args.reduce(:+)
+end
+
+sum(1, 2, 3, 4) # 10
+```
+
+#### Convert a number to equivalent characters
+
+```
+str.chr
+
+99.chr # "c"
+```
+
+#### Convert a string to equivalent number
+
+```
+"2".to_i # 2
+```
+
+#### Convert decimal to binary recursively
+
+```
+def decimal_to_binary(num)
+  num == 0 ? "" : decimal_to_binary(num/2) + num.divmod(2)[1].to_s
+end
+
+decimal_to_binary(10) # 1010
+```
+
+#### Get the arrays of digits from a number
+
+```
+def digit_array(num)
+  num.to_s.chars.map(&:to_i)
+end
+
+digit_array(123) # [1,2,3]
+
+```
+
+#### Prefix an integer with zeros
+
+```
+def prefix_with_zeros(num, size)
+  num.to_s.rjust(size, '0')
+end
+
+prefix_with_zeros(42, 5) # 00042
+
+```
+
+#### Multiply arguments
+
+```
+def multiply(*args)
+  args.reduce(:*)
+end
+
+ multiply(1,  2, 3, 4) # 24
+
+```
+
+#### Round a number to a given number of digits
+
+```
+def round_to_digits(num, digits)
+  num.round(digits)
+end
+
+round_to_digits(1.234567, 3) # 1.235
+
+```
+
+#### Subtract arguments
+
+```
+def subtract(*args)
+  args.reduce(:-)
+end
+
+subtract(1, 2, 3, 4) # -8
+
+```
+
+#### Truncate a number at decimal
+
+```
+def truncate_at_decimal(num)
+  num.to_i
+end
+
+truncate_at_decimal(25.198726354) # 25
+```
+
+#### Truncate a number to a given number of decimal places without rounding
+
+```
+def truncate_without_rounding(num, digits)
+  num.truncate(digits)
+end
+
+truncate_without_rounding(25.198726354, 1) # 25.1
+```
+
 ## FUNCTIONS
 
 #### Inline if-else
@@ -1141,7 +1353,7 @@ randomLines(
   four
   five`,
     2
-);
+)
 
 # ['one', 'four']
 ```
